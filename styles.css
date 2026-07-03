@@ -1,0 +1,928 @@
+:root {
+  --charcoal: #080a07;
+  --deep-forest: #10160e;
+  --moss: #647447;
+  --moss-bright: #98aa68;
+  --umber: #3a2718;
+  --bark: #5b3b24;
+  --old-gold: #b99a55;
+  --gold-dim: #836d3d;
+  --parchment: #c9baa0;
+  --parchment-deep: #a99571;
+  --ash: #d8d0be;
+  --bloodroot: #6d3027;
+  --ink: #16130f;
+  --shadow: rgba(0, 0, 0, 0.62);
+  --page-width: 1180px;
+  --header-height: 76px;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 112px;
+  background: var(--charcoal);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--ash);
+  background:
+    radial-gradient(circle at 18% 10%, rgba(100, 116, 71, 0.16), transparent 28rem),
+    radial-gradient(circle at 86% 18%, rgba(109, 48, 39, 0.15), transparent 24rem),
+    linear-gradient(180deg, #090b08 0%, #13140f 42%, #0b0d09 100%);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 19px;
+  line-height: 1.65;
+  letter-spacing: 0;
+  overflow-x: hidden;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  content: "";
+  opacity: 0.28;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 82%);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+p + p {
+  margin-top: 1rem;
+}
+
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mist {
+  position: absolute;
+  left: -15%;
+  width: 130%;
+  height: 26vh;
+  opacity: 0.14;
+  filter: blur(24px);
+  background:
+    linear-gradient(90deg, transparent, rgba(201, 186, 160, 0.18), transparent),
+    repeating-linear-gradient(100deg, transparent 0 52px, rgba(152, 170, 104, 0.12) 52px 92px);
+  animation: drift 26s linear infinite;
+}
+
+.mist-one {
+  top: 18vh;
+}
+
+.mist-two {
+  top: 58vh;
+  animation-duration: 34s;
+  animation-direction: reverse;
+}
+
+.leaf-field {
+  position: absolute;
+  inset: 0;
+}
+
+.leaf {
+  position: absolute;
+  top: -40px;
+  width: 7px;
+  height: 14px;
+  border-radius: 80% 0 80% 0;
+  opacity: 0.38;
+  background: var(--parchment-deep);
+  transform: rotate(24deg);
+  animation: fall var(--fall-duration, 18s) linear var(--fall-delay, 0s) infinite;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-height);
+  padding: 0.85rem clamp(1rem, 4vw, 3rem);
+  border-bottom: 1px solid rgba(185, 154, 85, 0.12);
+  background: rgba(8, 10, 7, 0.58);
+  backdrop-filter: blur(18px);
+  transition: background 260ms ease, border-color 260ms ease;
+}
+
+.site-header.is-scrolled {
+  border-color: rgba(185, 154, 85, 0.28);
+  background: rgba(8, 10, 7, 0.86);
+}
+
+.brand,
+.codex-nav {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  gap: 0.72rem;
+  font-family: Cinzel, Georgia, serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--old-gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brand-mark {
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(185, 154, 85, 0.72);
+  border-radius: 50%;
+  background:
+    linear-gradient(45deg, transparent 42%, var(--moss-bright) 43% 56%, transparent 57%),
+    radial-gradient(circle, rgba(185, 154, 85, 0.22), transparent 62%);
+  box-shadow: 0 0 22px rgba(152, 170, 104, 0.22);
+}
+
+.codex-nav {
+  gap: clamp(0.7rem, 2vw, 1.55rem);
+  font-family: Cinzel, Georgia, serif;
+  font-size: 0.72rem;
+  color: rgba(216, 208, 190, 0.74);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.codex-nav a {
+  position: relative;
+  padding: 0.45rem 0;
+}
+
+.codex-nav a::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  content: "";
+  background: var(--old-gold);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 220ms ease;
+}
+
+.codex-nav a:hover,
+.codex-nav a.is-active {
+  color: var(--old-gold);
+}
+
+.codex-nav a:hover::after,
+.codex-nav a.is-active::after {
+  transform: scaleX(1);
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: 92svh;
+  padding: calc(var(--header-height) + 5rem) clamp(1.1rem, 6vw, 6rem) 6rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+main section {
+  scroll-margin-top: 112px;
+}
+
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background-image: var(--hero-image, url("Chronicles_of_Elyndrath_Context_Pack/a_detailed_character_concept_sheet_illustration_sc.png"));
+  background-position: center top;
+  background-size: cover;
+  transform: scale(1.02);
+}
+
+.hero-backdrop::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(8, 10, 7, 0.92) 0%, rgba(8, 10, 7, 0.74) 36%, rgba(8, 10, 7, 0.26) 100%),
+    linear-gradient(180deg, rgba(8, 10, 7, 0.24) 0%, rgba(8, 10, 7, 0.18) 52%, rgba(8, 10, 7, 0.98) 100%);
+}
+
+.hero-shade {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: -1;
+  height: 32%;
+  background: linear-gradient(180deg, transparent, var(--charcoal));
+}
+
+.hero-content {
+  max-width: 710px;
+}
+
+.kicker {
+  margin-bottom: 0.75rem;
+  color: var(--old-gold);
+  font-family: Cinzel, Georgia, serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Cinzel, Georgia, serif;
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+h1 {
+  color: #eee2c9;
+  font-size: clamp(4.5rem, 13vw, 11rem);
+  text-shadow: 0 12px 44px rgba(0, 0, 0, 0.72);
+}
+
+.epithet {
+  margin-top: -0.35rem;
+  color: var(--parchment);
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(1.35rem, 3.8vw, 3rem);
+  line-height: 1.2;
+}
+
+.hero-text {
+  max-width: 660px;
+  margin-top: 1.35rem;
+  color: rgba(241, 232, 214, 0.86);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+}
+
+.identity-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 2rem;
+}
+
+.identity-strip span {
+  min-height: 40px;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgba(185, 154, 85, 0.36);
+  background: rgba(8, 10, 7, 0.52);
+  color: var(--old-gold);
+  font-family: Cinzel, Georgia, serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.chapter {
+  position: relative;
+  padding: clamp(4.5rem, 9vw, 8rem) clamp(1.1rem, 5vw, 4rem);
+}
+
+.chapter-inner {
+  width: min(100%, var(--page-width));
+  margin: 0 auto;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.two-column.reversed {
+  grid-template-columns: minmax(290px, 0.8fr) minmax(0, 1fr);
+}
+
+.chapter h2,
+.awakening h2,
+.quote-band h2 {
+  color: #efe5cf;
+  font-size: clamp(2rem, 5vw, 4.25rem);
+}
+
+.chapter-copy p,
+.section-heading p,
+.awakening-copy p,
+.quiet-note {
+  color: rgba(216, 208, 190, 0.82);
+  font-size: clamp(1.08rem, 1.7vw, 1.28rem);
+}
+
+.profile-panel {
+  border: 1px solid rgba(185, 154, 85, 0.28);
+  background:
+    linear-gradient(135deg, rgba(201, 186, 160, 0.1), rgba(16, 22, 14, 0.74)),
+    rgba(8, 10, 7, 0.56);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+.profile-panel dl {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.profile-panel div {
+  display: grid;
+  gap: 0.2rem;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid rgba(185, 154, 85, 0.16);
+}
+
+.profile-panel div:last-child {
+  border-bottom: 0;
+}
+
+.profile-panel dt {
+  color: var(--old-gold);
+  font-family: Cinzel, Georgia, serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.profile-panel dd {
+  margin: 0;
+  color: var(--ash);
+  font-size: 1.2rem;
+}
+
+.parchment {
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, rgba(8, 10, 7, 0.96), rgba(8, 10, 7, 0.18) 8%, rgba(8, 10, 7, 0.18) 92%, rgba(8, 10, 7, 0.96)),
+    radial-gradient(circle at 20% 30%, rgba(185, 154, 85, 0.12), transparent 25rem),
+    linear-gradient(135deg, #bda984, #d6c7a9 38%, #ad9874);
+}
+
+.parchment .kicker,
+.parchment h2,
+.parchment h3 {
+  color: #2a2118;
+}
+
+.parchment .section-heading p,
+.parchment .tenet p,
+.parchment .form-card p,
+.parchment .quiet-note {
+  color: rgba(22, 19, 15, 0.76);
+}
+
+.section-heading {
+  max-width: 800px;
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.tenets,
+.forms-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.tenet,
+.form-card {
+  min-height: 250px;
+  padding: clamp(1.1rem, 2.3vw, 1.6rem);
+  border: 1px solid rgba(42, 33, 24, 0.26);
+  background:
+    linear-gradient(145deg, rgba(255, 249, 227, 0.35), rgba(93, 59, 36, 0.12)),
+    rgba(255, 255, 255, 0.08);
+}
+
+.tenet h3,
+.form-card h3 {
+  margin-top: 1rem;
+  font-size: 1.18rem;
+}
+
+.sigil {
+  display: block;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(42, 33, 24, 0.45);
+  border-radius: 50%;
+  background:
+    linear-gradient(45deg, transparent 44%, rgba(100, 116, 71, 0.88) 45% 55%, transparent 56%),
+    radial-gradient(circle, rgba(109, 48, 39, 0.22), transparent 62%);
+}
+
+.spellcraft {
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(8, 10, 7, 0.94), rgba(16, 22, 14, 0.8)),
+    var(--spell-image, url("Chronicles_of_Elyndrath_Context_Pack/a_dark_fantasy_concept_art_character_sheet_illus.png")) center / cover fixed;
+}
+
+.spellcraft::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(180deg, rgba(8, 10, 7, 0.96), rgba(8, 10, 7, 0.58), rgba(8, 10, 7, 0.96)),
+    radial-gradient(circle at 18% 45%, rgba(152, 170, 104, 0.2), transparent 26rem);
+}
+
+.spellcraft .chapter-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.spell-words {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.spell-words span {
+  display: block;
+  padding: 1.15rem clamp(1rem, 3vw, 2rem);
+  border: 1px solid rgba(185, 154, 85, 0.32);
+  background: rgba(8, 10, 7, 0.56);
+  color: var(--parchment);
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(1.8rem, 5vw, 4.2rem);
+  line-height: 1.1;
+}
+
+.forms-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.realm-grid,
+.party-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.realm-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.party-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.character-card {
+  display: grid;
+  min-height: 100%;
+  border: 1px solid rgba(185, 154, 85, 0.24);
+  background: rgba(201, 186, 160, 0.05);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
+  transition: border-color 220ms ease, transform 220ms ease, background 220ms ease;
+}
+
+.character-card:hover {
+  border-color: rgba(185, 154, 85, 0.58);
+  background: rgba(201, 186, 160, 0.08);
+  transform: translateY(-4px);
+}
+
+.character-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.character-card .kicker,
+.character-card h3,
+.character-card p {
+  margin-right: 1.1rem;
+  margin-left: 1.1rem;
+}
+
+.character-card .kicker {
+  margin-top: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.character-card h3 {
+  color: var(--parchment);
+  font-size: clamp(1.35rem, 2.8vw, 2.1rem);
+}
+
+.character-card p {
+  margin-top: 0.65rem;
+  margin-bottom: 1.25rem;
+  color: rgba(216, 208, 190, 0.76);
+  font-size: 1.05rem;
+}
+
+.form-card {
+  min-height: 300px;
+}
+
+.form-index {
+  color: rgba(42, 33, 24, 0.48);
+  font-family: Cinzel, Georgia, serif;
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.form-symbol {
+  margin-top: 0.8rem;
+  color: #4b331f;
+  font-weight: 600;
+}
+
+.quiet-note {
+  width: min(100%, 760px);
+  margin: 2rem auto 0;
+  text-align: center;
+  font-style: italic;
+}
+
+.awakening {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  min-height: 780px;
+  background: #070907;
+}
+
+.awakening-image {
+  min-height: 560px;
+  background:
+    linear-gradient(90deg, rgba(8, 10, 7, 0.12), rgba(8, 10, 7, 0.86)),
+    url("Chronicles_of_Elyndrath_Context_Pack/a_dark_fantasy_concept_art_character_sheet_illus.png") center / cover;
+}
+
+.awakening-copy {
+  align-self: center;
+  max-width: 720px;
+  padding: clamp(3rem, 7vw, 7rem) clamp(1.3rem, 6vw, 5rem);
+}
+
+.cost {
+  margin-top: 2rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--bloodroot);
+}
+
+.cost h3 {
+  margin-bottom: 0.55rem;
+  color: var(--old-gold);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+
+.quote-band {
+  background:
+    linear-gradient(180deg, rgba(8, 10, 7, 0.92), rgba(16, 22, 14, 0.9)),
+    radial-gradient(circle at 50% 50%, rgba(185, 154, 85, 0.13), transparent 24rem);
+  text-align: center;
+}
+
+.quote-band h2 {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  color: var(--parchment);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.gallery-section {
+  background: #0b0d09;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: start;
+}
+
+.gallery:has(.gallery-item:only-child) {
+  grid-template-columns: minmax(0, 760px);
+}
+
+.gallery-item {
+  margin: 0;
+  border: 1px solid rgba(185, 154, 85, 0.24);
+  background: rgba(201, 186, 160, 0.05);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
+}
+
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.gallery-item:nth-child(2) img {
+  aspect-ratio: 5 / 4;
+}
+
+.gallery-item figcaption {
+  padding: 0.95rem 1rem 1.1rem;
+  color: rgba(216, 208, 190, 0.76);
+  font-size: 1rem;
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  justify-content: space-between;
+  padding: 1.5rem clamp(1.1rem, 5vw, 4rem);
+  border-top: 1px solid rgba(185, 154, 85, 0.18);
+  color: rgba(216, 208, 190, 0.58);
+  background: #070907;
+  font-family: Cinzel, Georgia, serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.audio-toggle {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 44px;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid rgba(185, 154, 85, 0.36);
+  border-radius: 999px;
+  color: rgba(216, 208, 190, 0.82);
+  background: rgba(8, 10, 7, 0.72);
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(16px);
+  cursor: pointer;
+  font-family: Cinzel, Georgia, serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: border-color 220ms ease, color 220ms ease, background 220ms ease, transform 220ms ease;
+}
+
+.audio-toggle:hover,
+.audio-toggle:focus-visible,
+.audio-toggle.is-playing {
+  border-color: rgba(185, 154, 85, 0.72);
+  color: var(--old-gold);
+  background: rgba(8, 10, 7, 0.88);
+}
+
+.audio-toggle:focus-visible {
+  outline: 2px solid rgba(185, 154, 85, 0.7);
+  outline-offset: 3px;
+}
+
+.audio-toggle:hover {
+  transform: translateY(-2px);
+}
+
+.audio-rune {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+.audio-rune::before,
+.audio-rune::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 14px;
+  content: "";
+  background: currentColor;
+  transform: translate(-50%, -50%) rotate(-38deg);
+}
+
+.audio-rune::after {
+  height: 10px;
+  transform: translate(-50%, -50%) rotate(38deg);
+}
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(-8%);
+  }
+
+  to {
+    transform: translateX(8%);
+  }
+}
+
+@keyframes fall {
+  from {
+    transform: translate3d(0, -40px, 0) rotate(0deg);
+  }
+
+  to {
+    transform: translate3d(var(--fall-drift, 70px), 110vh, 0) rotate(340deg);
+  }
+}
+
+@media (max-width: 980px) {
+  :root {
+    --header-height: 68px;
+  }
+
+  body {
+    font-size: 18px;
+  }
+
+  html {
+    scroll-padding-top: 128px;
+  }
+
+  main section {
+    scroll-margin-top: 128px;
+  }
+
+  .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .codex-nav {
+    width: 100%;
+    gap: 0.95rem;
+    overflow-x: auto;
+    padding-bottom: 0.2rem;
+    scrollbar-width: none;
+  }
+
+  .codex-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero {
+    min-height: 90svh;
+    padding-top: 9rem;
+  }
+
+  .hero-backdrop {
+    background-position: 45% top;
+  }
+
+  .two-column,
+  .two-column.reversed,
+  .awakening,
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .tenets,
+  .forms-grid,
+  .realm-grid,
+  .party-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .awakening-image {
+    min-height: 460px;
+  }
+
+  .awakening-copy {
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 17px;
+  }
+
+  .brand {
+    font-size: 0.9rem;
+  }
+
+  .codex-nav {
+    font-size: 0.68rem;
+  }
+
+  .hero {
+    min-height: 88svh;
+    padding-bottom: 4rem;
+  }
+
+  .hero-backdrop {
+    background-position: 42% top;
+  }
+
+  .hero-backdrop::after {
+    background:
+      linear-gradient(90deg, rgba(8, 10, 7, 0.88), rgba(8, 10, 7, 0.58)),
+      linear-gradient(180deg, rgba(8, 10, 7, 0.18), rgba(8, 10, 7, 0.96));
+  }
+
+  .identity-strip span {
+    width: calc(50% - 0.35rem);
+    text-align: center;
+  }
+
+  .chapter {
+    padding-block: 4.25rem;
+  }
+
+  .tenets,
+  .forms-grid,
+  .realm-grid,
+  .party-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tenet,
+  .form-card {
+    min-height: auto;
+  }
+
+  .spellcraft {
+    background-attachment: scroll;
+  }
+
+  .awakening-image {
+    min-height: 390px;
+  }
+
+  .site-footer {
+    display: block;
+  }
+
+  .audio-toggle {
+    right: 0.85rem;
+    bottom: 0.85rem;
+    min-height: 40px;
+    padding: 0.5rem 0.72rem;
+    font-size: 0.62rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

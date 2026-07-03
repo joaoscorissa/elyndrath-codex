@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Códice de Elyndrath, o Reino Esquecido: história, corrupção, sistema e personagens da campanha.">
+    <meta name="theme-color" content="#0b0d09">
+    <meta property="og:title" content="Elyndrath - O Reino Esquecido">
+    <meta property="og:description" content="Um códice dark fantasy celta para o universo e personagens de Elyndrath.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/elyndrath-hero.png">
+    <title>Elyndrath - O Reino Esquecido</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23080a07'/%3E%3Cpath d='M18 46C19 28 30 16 47 14C45 31 34 43 18 46Z' fill='%23b99a55'/%3E%3Cpath d='M21 44L45 17' stroke='%2310160e' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+    <script>document.documentElement.classList.add("js");</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true">
+      <div class="mist mist-one"></div>
+      <div class="mist mist-two"></div>
+      <div class="leaf-field" data-leaf-field></div>
+    </div>
+
+    <header class="site-header" data-header>
+      <a class="brand" href="#inicio" aria-label="Voltar ao início">
+        <span class="brand-mark"></span>
+        <span>Elyndrath</span>
+      </a>
+      <nav class="codex-nav" aria-label="Seções do códice">
+        <a href="#mundo">Mundo</a>
+        <a href="#aurora">Aurora</a>
+        <a href="#queda">Queda</a>
+        <a href="#sistema">Sistema</a>
+        <a href="#personagens">Personagens</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-backdrop" style="--hero-image: url('assets/elyndrath-hero.png')" role="img" aria-label="Paisagem de Elyndrath com floresta ancestral, círculos de pedra e ruínas medievais"></div>
+        <div class="hero-shade"></div>
+        <div class="hero-content reveal">
+          <p class="kicker">Chronicles of Elyndrath</p>
+          <h1 id="hero-title">Elyndrath</h1>
+          <p class="epithet">O Reino Esquecido</p>
+          <p class="hero-text">
+            Uma terra de raízes antigas, círculos de pedra, juramentos quebrados e magia telúrica, onde a lembrança da Aurora Dourada ainda resiste sob a névoa da corrupção.
+          </p>
+          <div class="identity-strip" aria-label="Pilares de Elyndrath">
+            <span>Dark Fantasy</span>
+            <span>Celta</span>
+            <span>Medieval</span>
+            <span>D20 próprio</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-intro" id="mundo" aria-labelledby="mundo-title">
+        <div class="chapter-inner two-column">
+          <div class="chapter-copy reveal">
+            <p class="kicker">A Terra das Raízes Antigas</p>
+            <h2 id="mundo-title">Um Reino Envolto em Névoa e Esquecimento</h2>
+            <p>
+              Elyndrath foi um reino glorioso entre florestas ancestrais, colinas cobertas de megalitos e rios sinuosos. Suas pedras, bosques e ruínas ainda carregam as marcas de uma era em que o mundo mortal e o Outro Lado respiravam em equilíbrio.
+            </p>
+            <p>
+              Hoje, esse equilíbrio foi ferido. A corrupção se espalha como uma doença da realidade, alterando criaturas, fragmentando antigas alianças e fazendo com que a memória do reino pareça desaparecer sob raízes, cinzas e silêncio.
+            </p>
+          </div>
+          <aside class="profile-panel reveal" aria-label="Dados do universo">
+            <dl>
+              <div>
+                <dt>Reino</dt>
+                <dd>Elyndrath</dd>
+              </div>
+              <div>
+                <dt>Epíteto</dt>
+                <dd>O Reino Esquecido</dd>
+              </div>
+              <div>
+                <dt>Forças</dt>
+                <dd>Honra, magia telúrica, fé, corrupção e memória</dd>
+              </div>
+              <div>
+                <dt>Tom</dt>
+                <dd>Dark fantasy celta e medieval melancólico</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter parchment" id="aurora" aria-labelledby="aurora-title">
+        <div class="chapter-inner">
+          <div class="section-heading reveal">
+            <p class="kicker">O Tempo da Aurora Dourada</p>
+            <h2 id="aurora-title">Aelorian, Vaelor e o Pacto com os Antigos Espíritos</h2>
+            <p>
+              Há séculos, os Povos das Colinas e os Clãs Guerreiros foram unidos sob o lendário Rei Aelorian, aceito pelo Trono de Ardruin. Com a lança divina Lirael e a orientação do mago-druida Vaelor, Elyndrath viveu uma era de honra, justiça e harmonia com as forças da natureza.
+            </p>
+          </div>
+          <div class="tenets" aria-label="Pilares da Aurora Dourada">
+            <article class="tenet reveal">
+              <span class="sigil"></span>
+              <h3>O Código Aeloriano</h3>
+              <p>Cavaleiros juravam proteger os fracos, honrar os antigos espíritos e preservar o equilíbrio.</p>
+            </article>
+            <article class="tenet reveal">
+              <span class="sigil"></span>
+              <h3>Magia Telúrica</h3>
+              <p>Círculos de pedra, bosques sagrados e rios profundos serviam como fontes de poder antigo.</p>
+            </article>
+            <article class="tenet reveal">
+              <span class="sigil"></span>
+              <h3>O Outro Lado</h3>
+              <p>O mundo mortal não era isolado; espíritos e presságios participavam do ciclo natural.</p>
+            </article>
+            <article class="tenet reveal">
+              <span class="sigil"></span>
+              <h3>Lirael</h3>
+              <p>A lança divina tornou-se símbolo do reinado, da promessa de unidade e do custo da queda.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter spellcraft" id="queda" style="--spell-image: url('assets/elyndrath-hero.png')" aria-labelledby="queda-title">
+        <div class="chapter-inner two-column reversed">
+          <div class="spell-words reveal" aria-label="Marcos da queda">
+            <span>Traição</span>
+            <span>Guerra</span>
+            <span>Corrupção</span>
+          </div>
+          <div class="chapter-copy reveal">
+            <p class="kicker">A Queda</p>
+            <h2 id="queda-title">Quando a Honra Não Bastou</h2>
+            <p>
+              A ruína começou com Varoth, cavaleiro respeitado que temia que a paz enfraquecesse o reino. Ele envenenou a mente de outros nobres e os convenceu de que Aelorian precisava ser derrubado pelo bem de Elyndrath.
+            </p>
+            <p>
+              Aelorian venceu Varoth em duelo, mas foi ferido por uma adaga envenenada. A traição se espalhou, a guerra civil partiu os cavaleiros entre leais e rebelados, e múltiplas facções passaram a disputar os restos da Aurora.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter parchment" id="sistema" aria-labelledby="sistema-title">
+        <div class="chapter-inner">
+          <div class="section-heading reveal">
+            <p class="kicker">Sistema Próprio</p>
+            <h2 id="sistema-title">Um D20 Moldado Para Elyndrath</h2>
+            <p>
+              A campanha adapta elementos de fantasia medieval e RPGs d20 para um sistema próprio, com atributos clássicos, proficiências narrativas, vantagem e desvantagem, combate direto e espaço para magia, fé, alquimia, exploração e corrupção.
+            </p>
+          </div>
+          <div class="realm-grid">
+            <article class="form-card reveal">
+              <p class="form-index">01</p>
+              <h3>Testes</h3>
+              <p class="form-symbol">1d20 + modificadores contra uma CD.</p>
+              <p>As dificuldades vão de ações fáceis a feitos quase impossíveis, sempre ajustadas pela situação.</p>
+            </article>
+            <article class="form-card reveal">
+              <p class="form-index">02</p>
+              <h3>Vantagem</h3>
+              <p class="form-symbol">Condições importam.</p>
+              <p>Terreno, magia, equipamento, ferimentos, relíquias e corrupção podem alterar a rolagem.</p>
+            </article>
+            <article class="form-card reveal">
+              <p class="form-index">03</p>
+              <h3>Proficiências</h3>
+              <p class="form-symbol">Identidade em jogo.</p>
+              <p>Combate, druidismo, ocultismo, teologia, medicina, alquimia e exploração definem o modo de agir.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter gallery-section" id="personagens" aria-labelledby="personagens-title">
+        <div class="chapter-inner">
+          <div class="section-heading reveal">
+            <p class="kicker">Personagens</p>
+            <h2 id="personagens-title">Vozes Que Caminham Pelo Reino</h2>
+            <p>
+              Cada personagem revela uma face diferente de Elyndrath: a floresta que ainda escuta, as montanhas que guardam conhecimento e os juramentos de ferro dos antigos cavaleiros.
+            </p>
+          </div>
+          <div class="party-grid">
+            <a class="character-card reveal" href="bran/">
+              <img src="Chronicles_of_Elyndrath_Context_Pack/a_detailed_character_concept_sheet_illustration_sc.png" alt="Bran, mago-druida Fir Bolg">
+              <span class="kicker">Fir Bolg · Mago-Druida</span>
+              <h3>Bran</h3>
+              <p>O Que Ainda Escuta. Guardião da antiga tradição druídica e da memória da floresta.</p>
+            </a>
+            <a class="character-card reveal" href="thorbem-goldstone/">
+              <img src="assets/thorbem-goldstone.png" alt="Thorbem Goldstone, mago Dvergar">
+              <span class="kicker">Dvergar · Mago</span>
+              <h3>Thorbem Goldstone</h3>
+              <p>Espírito da montanha. Conselheiro, alquimista e viajante de Khern Baldhur.</p>
+            </a>
+            <a class="character-card reveal" href="edward-greystone/">
+              <img src="assets/edward-greystone.jpeg" alt="Edward Greystone, cavaleiro humano">
+              <span class="kicker">Humano · Cavaleiro</span>
+              <h3>Edward Greystone</h3>
+              <p>IronCloak. Herdeiro errante dos Protetores do Vale-Verde e do Carvalho de Pedra.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Chronicles of Elyndrath</p>
+      <p>O Reino Esquecido</p>
+    </footer>
+
+    <button class="audio-toggle" type="button" data-audio-toggle aria-pressed="false">
+      <span class="audio-rune" aria-hidden="true"></span>
+      <span data-audio-label>Trilha</span>
+    </button>
+    <audio data-background-audio src="assets/elyndrath-theme.mp3" preload="metadata" loop></audio>
+    <script src="script.js"></script>
+  </body>
+</html>
