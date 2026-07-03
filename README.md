@@ -35,19 +35,18 @@ A experiência visual segue o tom de um livro antigo ou códice de mundo: fundo 
 - `assets/`: imagens compartilhadas e imagens extraídas/geradas para o site.
 - `assets/elyndrath-theme.mp3`: trilha sonora de fundo do códice.
 - `serve.sh`: script local para subir um webserver estático de teste.
-- `.github/workflows/pages.yml`: workflow de deploy automático no GitHub Pages.
 - `Chronicles_of_Elyndrath_Context_Pack/`: imagens, lore, regras de estilo e contexto narrativo.
 
 ## Compatibilidade com GitHub Pages
 
 O projeto foi criado para publicação direta no GitHub Pages sem etapa de build. Todos os caminhos são relativos à raiz do repositório.
 
-O arquivo `.github/workflows/pages.yml` publica automaticamente o site quando houver push na branch `main` ou `master`. Para usar esse fluxo:
+Como o site é totalmente estático, ele pode ser publicado usando o fluxo nativo do GitHub Pages apontando para a branch principal do repositório. Para usar esse fluxo:
 
 1. Envie a pasta do projeto para um repositório GitHub.
 2. Abra `Settings > Pages`.
-3. Em `Build and deployment`, selecione `GitHub Actions`.
-4. Faça push na branch `main` ou `master`.
+3. Em `Build and deployment`, selecione `Deploy from a branch`.
+4. Escolha a branch `main` (ou `master`) e a pasta `/ (root)`.
 5. Salve as configurações.
 
 ## Desenvolvimento local
