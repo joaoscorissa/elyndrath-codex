@@ -492,6 +492,10 @@ h1 {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
+.forms-grid:has(.form-card:nth-child(6)) {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .realm-grid,
 .party-grid {
   display: grid;
